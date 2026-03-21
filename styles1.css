@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #ececec;
+  color: #222;
+}
+
+button {
+  width: 85%;
+  display: block;
+  margin: 0 auto;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  background: #f68d4e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
