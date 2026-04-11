@@ -11,6 +11,16 @@ function QuieroAgregar() {
   alert(mensaje);
   document.querySelector(".clienteAgregado").textContent =
     nombre + " " + correo;
+  document.querySelector(".clienteAgregado").style.fontSize = "18px";
+  document.querySelector(".clienteAgregado").style.color = "blue";
+  document.querySelector(".clienteAgregado").style.fontWeight = "bold";
+  alert("¡Gracias por querer agregarte !");
+  document.querySelector(".clienteAgregado").innerHTML +=
+    "<table border='1'><thead><tr><th>Nombre</th><th>Correo</th></tr></thead><tbody><tr><td>" +
+    nombre +
+    "</td><td>" +
+    correo +
+    "</td></tr></tbody></table>";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
