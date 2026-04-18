@@ -1,9 +1,18 @@
 let catalogoData = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const modal = document.getElementById("movieModal");
+  // Cerrar con botón
+  document.querySelector(".close-btn").addEventListener("click", cerrarModal);
+  // Cerrar haciendo click fuera
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      cerrarModal();
+    }
+  });
   try {
     const response = await fetch("catalogo.json");
-    const catalogoData = await response.json();
+    catalogoData = await response.json();
     mostrarCatalogo(catalogoData);
   } catch (error) {
     console.error("Error cargando el catálogo:", error);
@@ -29,7 +38,29 @@ function mostrarCatalogo(catalogoData) {
       </div>
     `;
 
+      catalogoItem.addEventListener("click", () => {
+        mostrarDetalles(catalogo.id);
+      });
       catalogoGrid.appendChild(catalogoItem);
     });
   }
+}
+
+function mostrarDetalles(Id) {
+  const catalogo = catalogoData.find((p) => p.id === Id);
+
+  // Rellenar el modal con los datos de la película
+  document.getElementById("modalImage").src = catalogo.image;
+  document.getElementById("modalDescription").textContent =
+    catalogo.description;
+
+  // Mostrar el modal
+  document.getElementById("movieModal").classList.remove("hidden");
+  document.body.style.overflow = "hidden"; // Prevenir scroll del body
+}
+
+// Función para cerrar el modal
+function cerrarModal() {
+  document.getElementById("movieModal").classList.add("hidden");
+  document.body.style.overflow = "auto"; // Restaurar scroll del body
 }
